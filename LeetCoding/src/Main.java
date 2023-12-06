@@ -26,4 +26,14 @@ public class Main {
 
         return x==reversed;                      // compare reverse integer value with original value and return ans
     }
+
+    public int removeElement(int[] nums, int val) {
+        int i = 0;
+
+        for (int num : nums)
+            if (num != val)
+                nums[i++] = num;
+
+        return i;
+    }
 }
