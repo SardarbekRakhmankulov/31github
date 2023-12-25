@@ -1,3 +1,6 @@
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
@@ -284,5 +287,21 @@ public class Main {
                     return strs[0].substring(0, i);
 
         return strs[0];
+    }
+
+    public boolean isValid(String s) {
+        Deque<Character> stack = new ArrayDeque<>();
+
+        for (final char c : s.toCharArray())
+            if (c == '(')
+                stack.push(')');
+            else if (c == '{')
+                stack.push('}');
+            else if (c == '[')
+                stack.push(']');
+            else if (stack.isEmpty() || stack.pop() != c)
+                return false;
+
+        return stack.isEmpty();
     }
 }
