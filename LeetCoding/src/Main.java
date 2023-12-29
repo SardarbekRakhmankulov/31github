@@ -1,7 +1,4 @@
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -197,24 +194,6 @@ public class Main {
         return (int) l - 1;
     }
 
-    public void sortColors(int[] nums) {
-        int zero = -1;
-        int one = -1;
-        int two = -1;
-
-        for (final int num : nums)
-            if (num == 0) {
-                nums[++two] = 2;
-                nums[++one] = 1;
-                nums[++zero] = 0;
-            } else if (num == 1) {
-                nums[++two] = 2;
-                nums[++one] = 1;
-            } else {
-                nums[++two] = 2;
-            }
-    }
-
     public int strStr(String haystack, String needle) {
         final int m = haystack.length();
         final int n = needle.length();
@@ -352,5 +331,18 @@ public class Main {
             } else {
                 nums[++two] = 2;
             }
+    }
+
+    public List<List<String>> groupAnagrams(String[] strs) {
+        Map<String, List<String>> keyToAnagrams = new HashMap<>();
+
+        for (final String str : strs) {
+            char[] chars = str.toCharArray();
+            Arrays.sort(chars);
+            String key = String.valueOf(chars);
+            keyToAnagrams.computeIfAbsent(key, k -> new ArrayList<>()).add(str);
+        }
+
+        return new ArrayList<>(keyToAnagrams.values());
     }
 }
